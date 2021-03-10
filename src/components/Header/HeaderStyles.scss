@@ -1,0 +1,31 @@
+.header {
+  // border: 1px solid #000;
+  display: flex;
+  padding: 1.5vw 2vw;
+
+  .logo {
+    font-size: 2vw;
+    margin-right: 5vw;
+    letter-spacing: 1vw;
+  }
+
+  .main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__left,
+    &__right {
+      display: flex;
+
+      li {
+        cursor: pointer;
+
+        &:not(:first-child) {
+          margin-left: 2vw;
+        }
+      }
+    }
+  }
+}
