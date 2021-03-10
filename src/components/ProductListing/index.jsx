@@ -19,7 +19,7 @@ function ProductListing() {
     <div className="products">
       <div className="container products__listing">
         {products.map((item) => (
-          <Card key={item.id} />
+          <Card key={item.id} data={item} />
         ))}
       </div>
     </div>

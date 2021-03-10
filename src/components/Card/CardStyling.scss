@@ -1,3 +1,26 @@
 .card {
-  border: 1px solid #000;
+  text-align: center;
+
+  .image {
+    height: 10vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .caption {
+    margin-top: 4vw;
+  }
+
+  .btn {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0.8vw;
+    background-color: #4b5548;
+    color: white;
+    border: 0;
+    font-size: 1vw;
+    margin-top: 1.5vw;
+  }
 }

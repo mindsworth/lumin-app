@@ -1,7 +1,9 @@
 .products {
+  padding: 8vw 0;
+
   &__listing {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 3vw;
+    grid-gap: 5vw;
   }
 }
