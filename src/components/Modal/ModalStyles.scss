@@ -1,0 +1,15 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#000000, 0.8);
+
+  .dialog {
+    width: 50vw;
+    background-color: #fff;
+    height: 100%;
+    margin-left: auto;
+  }
+}
