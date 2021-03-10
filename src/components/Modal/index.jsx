@@ -4,7 +4,11 @@ import "./ModalStyles.scss";
 function Modal() {
   return (
     <div className="modal">
-      <div className="dialog">Modal</div>
+      <div className="dialog">
+          <div className="dialog__header">
+              <div></div>
+          </div>
+      </div>
     </div>
   );
 }
