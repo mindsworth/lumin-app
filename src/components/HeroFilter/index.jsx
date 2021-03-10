@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select from "react-select";
+import CustomSelect from "../Select";
 import "./HeroFilterStyles.scss";
 
 const options = [
@@ -19,13 +19,11 @@ function HeroFilter() {
           <p className="title__sub">A 360° look at Lumin</p>
         </div>
         <div className="hero-filter__right">
-          <Select
-            className="filter"
+          <CustomSelect
             value={selectedOption}
             onChange={(selectedOption) => setSelectedOption(selectedOption)}
-            options={options}
-            isSearchable={false}
             placeholder="Filter by"
+            options={options}
           />
         </div>
       </div>
