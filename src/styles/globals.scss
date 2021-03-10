@@ -22,10 +22,18 @@ body {
   font-family: "Libre Franklin", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f3f2f2;
+  background-color: #ffffff;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid red;
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+.collection-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
 }
 
 a {
@@ -40,4 +48,5 @@ li {
 .container {
   max-width: 80vw;
   margin: 0 auto;
+  padding: 1vw;
 }

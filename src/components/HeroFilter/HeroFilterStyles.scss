@@ -1,5 +1,27 @@
 .hero-filter {
-  border: 1px solid #000;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 25vh;
+
+  &__left {
+    & .title {
+      font-size: 3vw;
+
+      &__sub {
+        margin-top: 1vw;
+      }
+    }
+  }
+
+  &__right {
+    min-width: 20vw;
+
+    .filter {
+      .css-yk16xz-control,
+      .css-1pahdxg-control {
+        min-height: 58px;
+      }
+    }
+  }
 }
