@@ -12,7 +12,7 @@ function HeroFilter() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
-    <section>
+    <section className="hero-filter-wrapper">
       <div className="container hero-filter">
         <div className="hero-filter__left">
           <h1 className="title">All Products</h1>

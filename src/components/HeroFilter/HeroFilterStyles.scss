@@ -1,26 +1,30 @@
-.hero-filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 25vh;
+.hero-filter-wrapper {
+  background-color: #fcfcfa;
 
-  &__left {
-    & .title {
-      font-size: 3vw;
+  .hero-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 25vh;
 
-      &__sub {
-        margin-top: 1vw;
+    &__left {
+      & .title {
+        font-size: 3vw;
+
+        &__sub {
+          margin-top: 1vw;
+        }
       }
     }
-  }
 
-  &__right {
-    min-width: 20vw;
+    &__right {
+      min-width: 20vw;
 
-    .filter {
-      .css-yk16xz-control,
-      .css-1pahdxg-control {
-        min-height: 58px;
+      .filter {
+        .css-yk16xz-control,
+        .css-1pahdxg-control {
+          min-height: 58px;
+        }
       }
     }
   }
