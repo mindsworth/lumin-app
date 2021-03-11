@@ -38,6 +38,12 @@
         background-color: #4b5548;
         color: #ffffff;
       }
+
+      &:focus {
+        border-radius: 0;
+        border: 0;
+        outline: 0;
+      }
     }
 
     .num {
