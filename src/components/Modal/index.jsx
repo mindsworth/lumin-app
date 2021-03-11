@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { get } from "idb-keyval";
+import { get, values } from "idb-keyval";
 import { FETCH_CURRENCY } from "../../graphQL/queries";
 import "./ModalStyles.scss";
 import CustomSelect from "../Select";
+import CartCard from "../CartCard";
 
 function Modal() {
   const { error, loading, data } = useQuery(FETCH_CURRENCY);
   const [cart, setCart] = useState([]);
   const [currency, setCurrency] = useState([]);
 
+  const getCart = get("cart");
+
   useEffect(() => {
-    get("cart").then((val) => {
+    getCart.then((val) => {
       setCart(val);
     });
-  }, []);
+  }, [getCart]);
 
   useEffect(() => {
     if (data) {
@@ -41,7 +44,11 @@ function Modal() {
               options={options}
             />
           </div>
-          <div className="cart-list">{cart.map((item) => item.title)}</div>
+          <div className="cart-list">
+            {cart.map((item) => (
+              <CartCard key={item.id} data={item} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
