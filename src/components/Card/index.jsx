@@ -5,22 +5,21 @@ import "./CardStyling.scss";
 function Card({ data }) {
   const handleOnAddToCart = (data) => {
     update("cart", (res) => {
-      let newItem;
-
-      console.log("res :", res);
+      const newItem = { ...data, count: 1 };
+      const currentItem = res.find((item) => item.id === data.id);
 
       if (res) {
-        return (newItem = res.map((item) => {
-          if (item.id === data.id) {
-            item.count++;
-            return item;
-          }
+        return currentItem
+          ? res.map((item) => {
+              if (item.id === data.id) {
+                item.count++;
+                return item;
+              }
 
-          return item;
-        }));
+              return item;
+            })
+          : [...res, newItem];
       } else {
-        newItem = { ...data, count: 1 };
-
         return [newItem];
       }
     });

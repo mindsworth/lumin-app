@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { get } from "idb-keyval";
 import "./ModalStyles.scss";
 
 function Modal() {
+  const [cart, setCart] = useState();
+  useEffect(() => {
+    get("cart").then((val) => {
+      console.log("val", val);
+      setCart(val);
+    });
+  }, []);
   return (
     <div className="modal">
       <div className="dialog">
