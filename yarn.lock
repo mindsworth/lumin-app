@@ -5882,6 +5882,11 @@ icss-utils@^4.0.0, icss-utils@^4.1.1:
   dependencies:
     postcss "^7.0.14"
 
+idb-keyval@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-5.0.4.tgz#182881b1eafbb47d11a269422ae6d5243f0db0c7"
+  integrity sha512-qS0kplHuadZujoE90ze0NUkhW0/Fbfib7d+mYNMXNEn45NSh2NWY3fBewoX4GZUsKkGHBgc8JiAwMx0zrfL3LQ==
+
 identity-obj-proxy@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
@@ -6892,6 +6897,11 @@ jest@26.6.0:
     "@jest/core" "^26.6.0"
     import-local "^3.0.2"
     jest-cli "^26.6.0"
+
+jquery@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 js-base64@^2.1.8:
   version "2.6.4"
