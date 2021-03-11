@@ -31,6 +31,7 @@ function CartCard({ data }) {
 
   return (
     <div className="cart-card">
+      <i class="fa fa-times close" aria-hidden="true" />
       <div className="title">{data.title}</div>
       <div className="image-wrapper">
         <figure

@@ -1,6 +1,14 @@
 .cart-card {
   padding: 2vw;
   background-color: #fff;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    cursor: pointer;
+  }
 
   &:not(:last-child) {
     margin-bottom: 1vw;
