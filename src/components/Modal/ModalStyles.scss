@@ -38,9 +38,11 @@
       }
     }
 
-    &__select {
-      width: 10vw;
-      margin-top: 1.5vw;
+    &__body {
+      & .select {
+        width: 10vw;
+        margin-top: 1.5vw;
+      }
     }
   }
 }

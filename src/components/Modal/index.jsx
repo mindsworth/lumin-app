@@ -7,7 +7,7 @@ import CustomSelect from "../Select";
 
 function Modal() {
   const { error, loading, data } = useQuery(FETCH_CURRENCY);
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState([]);
   const [currency, setCurrency] = useState([]);
 
   useEffect(() => {
@@ -33,12 +33,15 @@ function Modal() {
           </div>
           <div className="title">Your Cart</div>
         </div>
-        <div className="dialog__select">
-          <CustomSelect
-            placeholder="Currency"
-            classNamePrefix="modal-select"
-            options={options}
-          />
+        <div className="dialog__body">
+          <div className="select">
+            <CustomSelect
+              placeholder="Currency"
+              classNamePrefix="modal-select"
+              options={options}
+            />
+          </div>
+          <div className="cart-list">{cart.map((item) => item.title)}</div>
         </div>
       </div>
     </div>
