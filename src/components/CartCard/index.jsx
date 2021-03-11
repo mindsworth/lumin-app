@@ -19,7 +19,7 @@ function CartCard({ data }) {
   const handleOnDecrement = (data) => {
     update("cart", (res) => {
       return res.map((item) => {
-        if (item.id === data.id) {
+        if (item.id === data.id && item.count > 1) {
           item.count--;
           return item;
         }
