@@ -5,8 +5,6 @@ import "./SelectStyles.scss";
 function CustomSelect(props) {
   const customStyle = {
     option: (base, state) => {
-      console.log("state", state);
-
       return {
         ...base,
         backgroundColor: state.isSelected
@@ -18,14 +16,7 @@ function CustomSelect(props) {
       };
     },
   };
-  return (
-    <Select
-      classNamePrefix="select"
-      isSearchable={false}
-      {...props}
-      styles={customStyle}
-    />
-  );
+  return <Select isSearchable={false} {...props} styles={customStyle} />;
 }
 
 export default CustomSelect;

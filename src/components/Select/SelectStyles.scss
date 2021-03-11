@@ -1,5 +1,11 @@
-.select {
+.hero-select {
   &__control {
     height: 58px;
+  }
+}
+
+.modal-select {
+  &__control {
+    border: 0 !important;
   }
 }

@@ -5,7 +5,6 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(#000000, 0.8);
-  display: none;
 
   .dialog {
     width: 50vw;
@@ -37,6 +36,11 @@
       .back-btn .fa-angle-left {
         font-size: 1.3vw;
       }
+    }
+
+    &__select {
+      width: 10vw;
+      margin-top: 1.5vw;
     }
   }
 }

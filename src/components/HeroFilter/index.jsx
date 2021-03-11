@@ -20,6 +20,7 @@ function HeroFilter() {
         </div>
         <div className="hero-filter__right">
           <CustomSelect
+            classNamePrefix="hero-select"
             value={selectedOption}
             onChange={(selectedOption) => setSelectedOption(selectedOption)}
             placeholder="Filter by"

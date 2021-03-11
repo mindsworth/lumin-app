@@ -10,3 +10,8 @@ export const FETCH_PRODUCTS = gql`
     }
   }
 `;
+export const FETCH_CURRENCY = gql`
+  query {
+    currency
+  }
+`;
