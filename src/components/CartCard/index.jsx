@@ -3,25 +3,29 @@ import { update } from "idb-keyval";
 import "./CartCardStyling.scss";
 
 function CartCard({ data }) {
-  const handleOnAddToCart = (data) => {
+  const handleOnIncrement = (data) => {
     update("cart", (res) => {
-      const newItem = { ...data, count: 1 };
-      const currentItem = res.find((item) => item.id === data.id);
+      return res.map((item) => {
+        if (item.id === data.id) {
+          item.count++;
+          return item;
+        }
 
-      if (res) {
-        return currentItem
-          ? res.map((item) => {
-              if (item.id === data.id) {
-                item.count++;
-                return item;
-              }
+        return item;
+      });
+    });
+  };
 
-              return item;
-            })
-          : [...res, newItem];
-      } else {
-        return [newItem];
-      }
+  const handleOnDecrement = (data) => {
+    update("cart", (res) => {
+      return res.map((item) => {
+        if (item.id === data.id) {
+          item.count--;
+          return item;
+        }
+
+        return item;
+      });
     });
   };
 
@@ -37,11 +41,11 @@ function CartCard({ data }) {
 
       <div className="counter-wrapper">
         <div className="counter">
-          <button className="btn" onClick={() => handleOnAddToCart(data)}>
+          <button className="btn" onClick={() => handleOnDecrement(data)}>
             <i class="fa fa-minus" aria-hidden="true" />
           </button>
           <span className="num">{data.count}</span>
-          <button className="btn" onClick={() => handleOnAddToCart(data)}>
+          <button className="btn" onClick={() => handleOnIncrement(data)}>
             <i class="fa fa-plus" aria-hidden="true" />
           </button>
         </div>
