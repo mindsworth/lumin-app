@@ -6,10 +6,9 @@ import "./ProductListingStyles.scss";
 import { FETCH_PRODUCTS } from "../../graphQL/queries";
 
 function ProductListing() {
-  const { error, loading, data } = useQuery(FETCH_PRODUCTS);
+  const { loading, data } = useQuery(FETCH_PRODUCTS);
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  console.log("products :", products, error, loading);
 
   useEffect(() => {
     if (data) {

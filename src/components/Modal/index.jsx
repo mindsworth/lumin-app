@@ -7,7 +7,7 @@ import CustomSelect from "../Select";
 import CartCard from "../CartCard";
 
 function Modal({ handleShowModal }) {
-  const { error, loading, data } = useQuery(FETCH_CURRENCY);
+  const { loading, data } = useQuery(FETCH_CURRENCY);
   const [cart, setCart] = useState([]);
   const [currency, setCurrency] = useState([]);
 
@@ -49,8 +49,15 @@ function Modal({ handleShowModal }) {
           </div>
           <div className="title">Your Cart</div>
         </div>
+
         <div className="dialog__body">
-          {cart.length > 0 && (
+          {loading && (
+            <div className="loading-state">
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw" />
+              <span class="sr-only">Loading...</span>
+            </div>
+          )}
+          {!loading && cart.length > 0 && (
             <div className="select">
               <CustomSelect
                 placeholder="Currency"
@@ -59,14 +66,16 @@ function Modal({ handleShowModal }) {
               />
             </div>
           )}
-          <div className="cart-list">
-            {cart.length === 0 && (
-              <div className="empty-state">No item in cart!!!</div>
-            )}
-            {cart.length > 0 &&
-              cart.map((item) => <CartCard key={item.id} data={item} />)}
-          </div>
-          {cart.length > 0 && (
+          {!loading && (
+            <div className="cart-list">
+              {cart.length === 0 && (
+                <div className="empty-state">No item in cart!!!</div>
+              )}
+              {cart.length > 0 &&
+                cart.map((item) => <CartCard key={item.id} data={item} />)}
+            </div>
+          )}
+          {!loading && cart.length > 0 && (
             <div className="total">
               <div className="label">Subtotal</div>
               <div className="value">${totalPrice}</div>
