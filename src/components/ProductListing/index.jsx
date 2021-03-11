@@ -21,8 +21,8 @@ function ProductListing() {
       <div className="products">
         {loading && (
           <div className="loading-state">
-            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
+            <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            <span className="sr-only">Loading...</span>
           </div>
         )}
         <div className="container products__listing">

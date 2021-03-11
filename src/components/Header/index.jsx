@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { get } from "idb-keyval";
 import "./HeaderStyles.scss";
 
 function Header() {
+  const getCart = get("cart");
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    getCart.then((val) => {
+      setCart(val);
+    });
+  }, [getCart]);
+
   return (
     <header className="header">
       <div className="logo">LUMIN</div>
@@ -14,8 +24,8 @@ function Header() {
           <li>Account</li>
           <li>
             <div className="cart-icon">
-              <i class="fa fa-shopping-cart" aria-hidden="true" />
-              <span className="count">3</span>
+              <i className="fa fa-shopping-cart" aria-hidden="true" />
+              <span className="count">{cart.length}</span>
             </div>
           </li>
         </ul>

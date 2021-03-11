@@ -53,8 +53,8 @@ function Modal({ handleShowModal }) {
         <div className="dialog__body">
           {loading && (
             <div className="loading-state">
-              <i class="fa fa-spinner fa-pulse fa-3x fa-fw" />
-              <span class="sr-only">Loading...</span>
+              <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
+              <span className="sr-only">Loading...</span>
             </div>
           )}
           {!loading && cart.length > 0 && (
