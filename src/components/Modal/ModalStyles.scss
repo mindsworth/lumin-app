@@ -47,6 +47,11 @@
       flex-direction: column;
       overflow: hidden;
 
+      & .loading-state {
+        text-align: center;
+        margin-top: 3vw;
+      }
+
       & .cart-list {
         max-height: 100%;
         flex: 1;
