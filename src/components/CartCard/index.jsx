@@ -29,9 +29,19 @@ function CartCard({ data }) {
     });
   };
 
+  const handleOnRemove = (data) => {
+    update("cart", (res) => {
+      return res.filter((item) => item.id !== data.id);
+    });
+  };
+
   return (
     <div className="cart-card">
-      <i class="fa fa-times close" aria-hidden="true" />
+      <i
+        className="fa fa-times close"
+        onClick={() => handleOnRemove(data)}
+        aria-hidden="true"
+      />
       <div className="title">{data.title}</div>
       <div className="image-wrapper">
         <figure
@@ -43,11 +53,11 @@ function CartCard({ data }) {
       <div className="counter-wrapper">
         <div className="counter">
           <button className="btn" onClick={() => handleOnDecrement(data)}>
-            <i class="fa fa-minus" aria-hidden="true" />
+            <i className="fa fa-minus" aria-hidden="true" />
           </button>
           <span className="num">{data.count}</span>
           <button className="btn" onClick={() => handleOnIncrement(data)}>
-            <i class="fa fa-plus" aria-hidden="true" />
+            <i className="fa fa-plus" aria-hidden="true" />
           </button>
         </div>
         <div className="price">${data.price}</div>

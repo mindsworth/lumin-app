@@ -27,6 +27,8 @@ function Modal() {
 
   const options = currency.map((item) => ({ value: item, label: item }));
 
+  const totalPrice = cart.reduce((acc, cur) => acc + cur.price * cur.count, 0);
+
   return (
     <div className="modal">
       <div className="dialog">
@@ -37,18 +39,32 @@ function Modal() {
           <div className="title">Your Cart</div>
         </div>
         <div className="dialog__body">
-          <div className="select">
-            <CustomSelect
-              placeholder="Currency"
-              classNamePrefix="modal-select"
-              options={options}
-            />
-          </div>
+          {cart.length > 0 && (
+            <div className="select">
+              <CustomSelect
+                placeholder="Currency"
+                classNamePrefix="modal-select"
+                options={options}
+              />
+            </div>
+          )}
           <div className="cart-list">
-            {cart.map((item) => (
-              <CartCard key={item.id} data={item} />
-            ))}
+            {cart.length === 0 && (
+              <div className="empty-state">No item in cart!!!</div>
+            )}
+            {cart.length > 0 &&
+              cart.map((item) => <CartCard key={item.id} data={item} />)}
           </div>
+          {cart.length > 0 && (
+            <div className="total">
+              <div className="label">Subtotal</div>
+              <div className="value">${totalPrice}</div>
+            </div>
+          )}
+        </div>
+        <div className="dialog__footer">
+          <button className="btn">Make this a subscription (save 20%)</button>
+          <button className="btn proceed-btn">Proceed to checkout</button>
         </div>
       </div>
     </div>

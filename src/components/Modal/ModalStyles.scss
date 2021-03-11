@@ -5,6 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(#000000, 0.8);
+  //   display: none;
 
   .dialog {
     width: 50vw;
@@ -12,6 +13,8 @@
     height: 100%;
     margin-left: auto;
     padding: 3vw;
+    display: flex;
+    flex-direction: column;
 
     &__header {
       display: flex;
@@ -39,10 +42,59 @@
     }
 
     &__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      & .cart-list {
+        max-height: 100%;
+        flex: 1;
+        overflow: auto;
+      }
+
       & .select {
         width: 10vw;
         margin-top: 1.5vw;
         margin-bottom: 1.5vw;
+      }
+
+      .empty-state {
+        font-size: 1.2vw;
+        text-align: center;
+      }
+
+      .total {
+        border-top: 1px solid #4b5548;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2vw;
+        padding: 1vw 0;
+        margin-top: 3vw;
+      }
+    }
+
+    &__footer {
+      margin-top: 2vw;
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 1vw;
+        background-color: #fff;
+        border: 1px solid #4b5548;
+        font-size: 1vw;
+        cursor: pointer;
+
+        &:not(:last-child) {
+          margin-bottom: 1vw;
+        }
+
+        &.proceed-btn {
+          background-color: #4b5548;
+          color: #ffffff;
+        }
       }
     }
   }
