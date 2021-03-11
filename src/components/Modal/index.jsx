@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { get, values } from "idb-keyval";
+import { get } from "idb-keyval";
 import { FETCH_CURRENCY } from "../../graphQL/queries";
 import "./ModalStyles.scss";
 import CustomSelect from "../Select";
@@ -25,15 +25,26 @@ function Modal({ handleShowModal }) {
     }
   }, [data]);
 
+  useEffect(() => {
+    return () => {
+      setCurrency([]);
+      setCart([]);
+    };
+  }, []);
+
   const options = currency.map((item) => ({ value: item, label: item }));
 
   const totalPrice = cart.reduce((acc, cur) => acc + cur.price * cur.count, 0);
+
+  const closeModal = () => {
+    handleShowModal(false);
+  };
 
   return (
     <div className="modal">
       <div className="dialog">
         <div className="dialog__header">
-          <div className="back-btn" onClick={() => handleShowModal(false)}>
+          <div className="back-btn" onClick={closeModal}>
             <i className="fa fa-angle-left" aria-hidden="true" />
           </div>
           <div className="title">Your Cart</div>
