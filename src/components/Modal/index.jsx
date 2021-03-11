@@ -6,7 +6,7 @@ import "./ModalStyles.scss";
 import CustomSelect from "../Select";
 import CartCard from "../CartCard";
 
-function Modal() {
+function Modal({ handleShowModal }) {
   const { error, loading, data } = useQuery(FETCH_CURRENCY);
   const [cart, setCart] = useState([]);
   const [currency, setCurrency] = useState([]);
@@ -33,7 +33,7 @@ function Modal() {
     <div className="modal">
       <div className="dialog">
         <div className="dialog__header">
-          <div className="back-btn">
+          <div className="back-btn" onClick={() => handleShowModal(false)}>
             <i className="fa fa-angle-left" aria-hidden="true" />
           </div>
           <div className="title">Your Cart</div>

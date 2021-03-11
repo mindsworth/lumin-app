@@ -2,7 +2,7 @@ import React from "react";
 import { update } from "idb-keyval";
 import "./CardStyling.scss";
 
-function Card({ data }) {
+function Card({ data, handleShowModal }) {
   const handleOnAddToCart = (data) => {
     update("cart", (res) => {
       const newItem = { ...data, count: 1 };
@@ -23,6 +23,8 @@ function Card({ data }) {
         return [newItem];
       }
     });
+
+    handleShowModal(true);
   };
 
   return (

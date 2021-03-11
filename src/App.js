@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import HeroFilter from "./components/HeroFilter";
 import ProductListing from "./components/ProductListing";
-import Modal from "./components/Modal";
 
 import {
   ApolloClient,
@@ -37,7 +36,6 @@ function App() {
         <Header />
         <HeroFilter />
         <ProductListing />
-        <Modal />
       </div>
     </ApolloProvider>
   );
