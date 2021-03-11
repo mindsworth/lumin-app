@@ -20,10 +20,17 @@ function ProductListing() {
   return (
     <>
       <div className="products">
+        {loading && (
+          <div className="loading-state">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
+        )}
         <div className="container products__listing">
-          {products.map((item) => (
-            <Card key={item.id} data={item} handleShowModal={setShowModal} />
-          ))}
+          {!loading &&
+            products.map((item) => (
+              <Card key={item.id} data={item} handleShowModal={setShowModal} />
+            ))}
         </div>
       </div>
       {showModal && <Modal handleShowModal={setShowModal} />}

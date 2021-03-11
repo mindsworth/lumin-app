@@ -1,6 +1,10 @@
 .products {
   padding: 10vw 0;
 
+  .loading-state {
+    text-align: center;
+  }
+
   &__listing {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
