@@ -6,7 +6,11 @@ import "./ProductListingStyles.scss";
 import { FETCH_PRODUCTS } from "../../graphQL/queries";
 
 function ProductListing() {
-  const { loading, data } = useQuery(FETCH_PRODUCTS);
+  const { loading, data } = useQuery(FETCH_PRODUCTS, {
+    variables: {
+      currency: "USD",
+    },
+  });
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
 

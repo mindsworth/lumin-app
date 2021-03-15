@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import getSymbolFromCurrency from "currency-symbol-map";
 import { useQuery } from "@apollo/client";
 import { get } from "idb-keyval";
-import { FETCH_CURRENCY } from "../../graphQL/queries";
+import { FETCH_CURRENCY, FETCH_PRODUCTS } from "../../graphQL/queries";
 import "./ModalStyles.scss";
 import CustomSelect from "../Select";
 import CartCard from "../CartCard";
 
 function Modal({ handleShowModal }) {
-  const { loading, data } = useQuery(FETCH_CURRENCY);
+  const currencies = useQuery(FETCH_CURRENCY);
+  const products = useQuery(FETCH_PRODUCTS, {
+    variables: {
+      currency: "USD",
+    },
+  });
   const [cart, setCart] = useState([]);
   const [currency, setCurrency] = useState([]);
 
@@ -20,10 +26,10 @@ function Modal({ handleShowModal }) {
   }, [getCart]);
 
   useEffect(() => {
-    if (data) {
-      setCurrency(data.currency);
+    if (currencies.data) {
+      setCurrency(currencies.data.currency);
     }
-  }, [data]);
+  }, [currencies.data]);
 
   useEffect(() => {
     return () => {
@@ -51,13 +57,13 @@ function Modal({ handleShowModal }) {
         </div>
 
         <div className="dialog__body">
-          {loading && (
+          {currencies.loading && (
             <div className="loading-state">
               <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
               <span className="sr-only">Loading...</span>
             </div>
           )}
-          {!loading && cart.length > 0 && (
+          {!currencies.loading && cart.length > 0 && (
             <div className="select">
               <CustomSelect
                 placeholder="Currency"
@@ -66,7 +72,7 @@ function Modal({ handleShowModal }) {
               />
             </div>
           )}
-          {!loading && (
+          {!currencies.loading && (
             <div className="cart-list">
               {cart.length === 0 && (
                 <div className="empty-state">No item in cart!!!</div>
@@ -75,7 +81,7 @@ function Modal({ handleShowModal }) {
                 cart.map((item) => <CartCard key={item.id} data={item} />)}
             </div>
           )}
-          {!loading && cart.length > 0 && (
+          {!currencies.loading && cart.length > 0 && (
             <div className="total">
               <div className="label">Subtotal</div>
               <div className="value">${totalPrice}</div>

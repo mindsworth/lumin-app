@@ -22,7 +22,7 @@ function CartCard({ data }) {
         if (item.id === data.id && item.count > 1) {
           item.count--;
           return item;
-        } else if (item.id === data.id && item.count == 1) {
+        } else if (item.id === data.id && item.count === 1) {
           handleOnRemove(data);
         }
 
