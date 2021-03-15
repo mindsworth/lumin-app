@@ -84,7 +84,10 @@ function Modal({ handleShowModal }) {
           {!currencies.loading && cart.length > 0 && (
             <div className="total">
               <div className="label">Subtotal</div>
-              <div className="value">${totalPrice}</div>
+              <div className="value">
+                {getSymbolFromCurrency("usd")}
+                {totalPrice}
+              </div>
             </div>
           )}
         </div>
