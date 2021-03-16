@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
+import { compact, map, isEqual, some } from "lodash";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { FETCH_CURRENCY, FETCH_PRODUCTS } from "../../graphQL/queries";
 import "./ModalStyles.scss";
@@ -40,9 +41,20 @@ function Modal({ handleShowModal }) {
   }, [products.data]);
 
   const updateCart = () => {
-    const newCarts = products.data.products.filter((product) =>
-      carts.includes(product)
+    const newCarts = compact(
+      map(products.data.products, (product) => {
+        let currentCart;
+        const isIncluded = some(carts, (cart) => {
+          currentCart = cart;
+          return isEqual(currentCart.title, product.title);
+        });
+        if (isIncluded) {
+          return { ...currentCart, ...product };
+        }
+        return false;
+      })
     );
+
     console.log("newCarts :", newCarts);
   };
 
