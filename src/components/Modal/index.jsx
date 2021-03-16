@@ -9,7 +9,7 @@ import CartCard from "../CartCard";
 import { CartsContext } from "../../contexts/CartsContext";
 
 function Modal({ handleShowModal }) {
-  const { carts, refresh } = useContext(CartsContext);
+  const { carts, refresh, setCarts } = useContext(CartsContext);
   const currencyQuery = useQuery(FETCH_CURRENCY);
   const [selectCurrency, setSelectCurrency] = useState("USD");
   const [fetchProducts, products] = useLazyQuery(FETCH_PRODUCTS, {
@@ -56,6 +56,7 @@ function Modal({ handleShowModal }) {
     );
 
     console.log("newCarts :", newCarts);
+    setCarts(newCarts);
   };
 
   const options = currencies.map((item) => ({ value: item, label: item }));
