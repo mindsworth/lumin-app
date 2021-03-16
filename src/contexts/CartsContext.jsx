@@ -10,12 +10,12 @@ const CartsContextProvider = ({ children }) => {
   }, []);
 
   const getCart = async () => {
-    const res = await get("cart");
-    setCarts(res);
+    const res = await get("carts");
+    setCarts(res || []);
   };
 
   const replaceCartsState = (data) => {
-    set("cart", data)
+    set("carts", data)
       .then(() => getCart())
       .catch((err) => console.log("It failed!", err));
   };

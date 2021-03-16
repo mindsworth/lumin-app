@@ -6,9 +6,10 @@ import { CartsContext } from "../../contexts/CartsContext";
 function Card({ data, handleShowModal }) {
   const { refresh } = useContext(CartsContext);
   const handleOnAddToCart = (data) => {
-    update("cart", (res) => {
+    update("carts", (res) => {
       const newItem = { ...data, count: 1 };
-      const currentItem = res.find((item) => item.id === data.id);
+
+      const currentItem = (res || []).find((item) => item.id === data.id);
 
       if (res) {
         return currentItem
@@ -27,7 +28,7 @@ function Card({ data, handleShowModal }) {
     });
 
     refresh();
-    handleShowModal(true);
+    handleShowModal();
   };
 
   return (

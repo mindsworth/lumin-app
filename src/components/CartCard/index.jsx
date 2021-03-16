@@ -4,7 +4,7 @@ import "./CartCardStyling.scss";
 
 function CartCard({ data, refresh, currency }) {
   const handleOnIncrement = (data) => {
-    update("cart", (res) => {
+    update("carts", (res) => {
       return res.map((item) => {
         if (item.id === data.id) {
           item.count++;
@@ -19,7 +19,7 @@ function CartCard({ data, refresh, currency }) {
   };
 
   const handleOnDecrement = (data) => {
-    update("cart", (res) => {
+    update("carts", (res) => {
       return res.map((item) => {
         if (item.id === data.id && item.count > 1) {
           item.count--;
@@ -36,7 +36,7 @@ function CartCard({ data, refresh, currency }) {
   };
 
   const handleOnRemove = (data) => {
-    update("cart", (res) => {
+    update("carts", (res) => {
       return res.filter((item) => item.id !== data.id);
     });
 

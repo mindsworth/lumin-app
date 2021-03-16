@@ -11,12 +11,11 @@ import { CartsContext } from "../../contexts/CartsContext";
 function Modal({ handleShowModal }) {
   const { carts, refresh, setCarts } = useContext(CartsContext);
   const currencyQuery = useQuery(FETCH_CURRENCY);
-  const [selectCurrency, setSelectCurrency] = useState("USD");
-  const [fetchProducts, products] = useLazyQuery(FETCH_PRODUCTS, {
-    variables: {
-      currency: selectCurrency,
-    },
+  const [selectCurrency, setSelectCurrency] = useState({
+    label: "USD",
+    value: "USD",
   });
+  const [fetchProducts, products] = useLazyQuery(FETCH_PRODUCTS);
 
   const [currencies, setCurrencies] = useState([]);
 
@@ -28,11 +27,6 @@ function Modal({ handleShowModal }) {
       setCurrencies([]);
     };
   }, [currencyQuery.data]);
-
-  useEffect(() => {
-    fetchProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectCurrency]);
 
   useEffect(() => {
     if (products.data) {
@@ -85,8 +79,16 @@ function Modal({ handleShowModal }) {
               <CustomSelect
                 placeholder="Currency"
                 classNamePrefix="modal-select"
+                value={selectCurrency}
                 options={options}
-                onChange={(select) => setSelectCurrency(select.value)}
+                onChange={(select) => {
+                  setSelectCurrency(select);
+                  fetchProducts({
+                    variables: {
+                      currency: select.value,
+                    },
+                  });
+                }}
               />
             </div>
           )}
@@ -106,7 +108,7 @@ function Modal({ handleShowModal }) {
                   <CartCard
                     key={item.id}
                     data={item}
-                    currency={getSymbolFromCurrency(selectCurrency)}
+                    currency={getSymbolFromCurrency(selectCurrency.value)}
                     refresh={refresh}
                   />
                 ))}
@@ -116,7 +118,7 @@ function Modal({ handleShowModal }) {
             <div className="total">
               <div className="label">Subtotal</div>
               <div className="value">
-                {getSymbolFromCurrency(selectCurrency)}
+                {getSymbolFromCurrency(selectCurrency.value)}
                 {totalPrice}
               </div>
             </div>
