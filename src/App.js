@@ -10,6 +10,8 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import CartsContextProvider from "./contexts/CartsContext";
+import ModalContextProvider from "./contexts/ModalContext";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -32,11 +34,15 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <Header />
-        <HeroFilter />
-        <ProductListing />
-      </div>
+      <CartsContextProvider>
+        <div className="App">
+          <ModalContextProvider>
+            <Header />
+          </ModalContextProvider>
+          <HeroFilter />
+          <ProductListing />
+        </div>
+      </CartsContextProvider>
     </ApolloProvider>
   );
 }

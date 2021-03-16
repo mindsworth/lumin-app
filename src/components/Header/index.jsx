@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { get } from "idb-keyval";
 import "./HeaderStyles.scss";
+import { CartsContext } from "../../contexts/CartsContext";
+import { ModalContext } from "../../contexts/ModalContext";
 
 function Header() {
-  const getCart = get("cart");
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    getCart.then((val) => {
-      setCart(val);
-    });
-  }, [getCart]);
+  const { carts } = useContext(CartsContext);
+  // const { visible, setVisibility } = useContext(ModalContext);
 
   return (
     <header className="header">
@@ -25,7 +21,7 @@ function Header() {
           <li>
             <div className="cart-icon">
               <i className="fa fa-shopping-cart" aria-hidden="true" />
-              <span className="count">{cart.length}</span>
+              <span className="count">{carts.length}</span>
             </div>
           </li>
         </ul>

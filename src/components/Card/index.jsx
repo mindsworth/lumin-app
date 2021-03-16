@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { update } from "idb-keyval";
 import "./CardStyling.scss";
+import { CartsContext } from "../../contexts/CartsContext";
 
 function Card({ data, handleShowModal }) {
+  const { refresh } = useContext(CartsContext);
   const handleOnAddToCart = (data) => {
     update("cart", (res) => {
       const newItem = { ...data, count: 1 };
@@ -24,6 +26,7 @@ function Card({ data, handleShowModal }) {
       }
     });
 
+    refresh();
     handleShowModal(true);
   };
 
