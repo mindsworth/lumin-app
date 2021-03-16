@@ -80,13 +80,7 @@ function Modal({ handleShowModal }) {
         </div>
 
         <div className="dialog__body">
-          {loading && (
-            <div className="loading-state">
-              <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
-              <span className="sr-only">Loading...</span>
-            </div>
-          )}
-          {!loading && carts.length > 0 && (
+          {!currencyQuery.loading && carts.length > 0 && (
             <div className="select">
               <CustomSelect
                 placeholder="Currency"
@@ -94,6 +88,12 @@ function Modal({ handleShowModal }) {
                 options={options}
                 onChange={(select) => setSelectCurrency(select.value)}
               />
+            </div>
+          )}
+          {loading && (
+            <div className="loading-state">
+              <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
+              <span className="sr-only">Loading...</span>
             </div>
           )}
           {!loading && (
