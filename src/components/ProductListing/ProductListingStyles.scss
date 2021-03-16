@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .products {
   padding: 10vw 0;
 
@@ -9,5 +11,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5vw;
+
+    @include respond(tab-land) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
   }
 }
