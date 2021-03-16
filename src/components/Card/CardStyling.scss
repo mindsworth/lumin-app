@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .card {
   text-align: center;
 
@@ -6,6 +8,10 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+
+    @include respond(phone) {
+      height: 40vw;
+    }
   }
 
   .caption {
@@ -26,5 +32,13 @@
     border: 0;
     font-size: 1vw;
     margin-top: 1.5vw;
+
+    @include respond(tab-land) {
+      font-size: 2vw;
+    }
+
+    @include respond(phone) {
+      font-size: 4vw;
+    }
   }
 }

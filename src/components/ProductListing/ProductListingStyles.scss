@@ -18,6 +18,7 @@
 
     @include respond(phone) {
       grid-template-columns: 1fr;
+      grid-gap: 20vw;
     }
   }
 }
