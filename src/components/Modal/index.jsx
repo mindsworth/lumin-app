@@ -67,6 +67,8 @@ function Modal({ handleShowModal }) {
     handleShowModal(false);
   };
 
+  const loading = products.loading || currencyQuery.loading;
+
   return (
     <div className="modal">
       <div className="dialog">
@@ -78,13 +80,13 @@ function Modal({ handleShowModal }) {
         </div>
 
         <div className="dialog__body">
-          {currencyQuery.loading && (
+          {loading && (
             <div className="loading-state">
               <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
               <span className="sr-only">Loading...</span>
             </div>
           )}
-          {!currencyQuery.loading && carts.length > 0 && (
+          {!loading && carts.length > 0 && (
             <div className="select">
               <CustomSelect
                 placeholder="Currency"
@@ -94,7 +96,7 @@ function Modal({ handleShowModal }) {
               />
             </div>
           )}
-          {!currencyQuery.loading && (
+          {!loading && (
             <div className="cart-list">
               {carts.length === 0 && (
                 <div className="empty-state">No item in cart!!!</div>
@@ -110,7 +112,7 @@ function Modal({ handleShowModal }) {
                 ))}
             </div>
           )}
-          {!currencyQuery.loading && carts.length > 0 && (
+          {!loading && carts.length > 0 && (
             <div className="total">
               <div className="label">Subtotal</div>
               <div className="value">
