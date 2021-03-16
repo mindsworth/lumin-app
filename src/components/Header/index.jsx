@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {  useContext } from "react";
 import "./HeaderStyles.scss";
 import { CartsContext } from "../../contexts/CartsContext";
 import { ModalContext } from "../../contexts/ModalContext";

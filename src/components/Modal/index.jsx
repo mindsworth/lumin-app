@@ -18,7 +18,6 @@ function Modal({ handleShowModal }) {
     },
   });
 
-  console.log("products :", products.data, carts);
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
@@ -32,12 +31,14 @@ function Modal({ handleShowModal }) {
 
   useEffect(() => {
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectCurrency]);
 
   useEffect(() => {
     if (products.data) {
       updateCart();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products.data]);
 
   const updateCart = () => {
@@ -55,7 +56,6 @@ function Modal({ handleShowModal }) {
       })
     );
 
-    console.log("newCarts :", newCarts);
     setCarts(newCarts);
   };
 
