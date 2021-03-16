@@ -2,7 +2,7 @@ import React from "react";
 import { update } from "idb-keyval";
 import "./CartCardStyling.scss";
 
-function CartCard({ data, refresh }) {
+function CartCard({ data, refresh, currency }) {
   const handleOnIncrement = (data) => {
     update("cart", (res) => {
       return res.map((item) => {
@@ -68,7 +68,10 @@ function CartCard({ data, refresh }) {
             <i className="fa fa-plus" aria-hidden="true" />
           </button>
         </div>
-        <div className="price">${data.price}</div>
+        <div className="price">
+          {currency}
+          {data.price}
+        </div>
       </div>
     </div>
   );

@@ -101,7 +101,12 @@ function Modal({ handleShowModal }) {
               )}
               {carts.length > 0 &&
                 carts.map((item) => (
-                  <CartCard key={item.id} data={item} refresh={refresh} />
+                  <CartCard
+                    key={item.id}
+                    data={item}
+                    currency={getSymbolFromCurrency(selectCurrency)}
+                    refresh={refresh}
+                  />
                 ))}
             </div>
           )}
