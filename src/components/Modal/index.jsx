@@ -9,12 +9,15 @@ import CartCard from "../CartCard";
 import { CartsContext } from "../../contexts/CartsContext";
 
 function Modal({ handleShowModal }) {
-  const { carts, refresh, setCarts } = useContext(CartsContext);
+  const {
+    carts,
+    refresh,
+    setCarts,
+    selectCurrency,
+    setSelectCurrency,
+  } = useContext(CartsContext);
   const currencyQuery = useQuery(FETCH_CURRENCY);
-  const [selectCurrency, setSelectCurrency] = useState({
-    label: "USD",
-    value: "USD",
-  });
+
   const [fetchProducts, products] = useLazyQuery(FETCH_PRODUCTS);
 
   const [currencies, setCurrencies] = useState([]);
