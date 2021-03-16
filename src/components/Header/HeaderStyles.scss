@@ -1,8 +1,10 @@
 .header {
-  // border: 1px solid #000;
+  position: sticky;
+  top: 0;
   display: flex;
   padding: 1.5vw 2.5vw;
   background-color: #fcfcfa;
+  z-index: 1000;
 
   .logo {
     font-size: 1.6vw;
