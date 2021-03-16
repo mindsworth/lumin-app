@@ -4,6 +4,7 @@ import Card from "../Card";
 import Modal from "../Modal";
 import "./ProductListingStyles.scss";
 import { FETCH_PRODUCTS } from "../../graphQL/queries";
+import CartsContextProvider from "../../contexts/CartsContext";
 
 function ProductListing() {
   const { loading, data } = useQuery(FETCH_PRODUCTS, {
@@ -36,7 +37,11 @@ function ProductListing() {
             ))}
         </div>
       </div>
-      {showModal && <Modal handleShowModal={setShowModal} />}
+      {showModal && (
+        <CartsContextProvider>
+          <Modal handleShowModal={setShowModal} />
+        </CartsContextProvider>
+      )}
     </>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { update } from "idb-keyval";
 import "./CartCardStyling.scss";
 
-function CartCard({ data }) {
+function CartCard({ data, refresh }) {
   const handleOnIncrement = (data) => {
     update("cart", (res) => {
       return res.map((item) => {
@@ -14,6 +14,8 @@ function CartCard({ data }) {
         return item;
       });
     });
+
+    refresh();
   };
 
   const handleOnDecrement = (data) => {
@@ -29,12 +31,16 @@ function CartCard({ data }) {
         return item;
       });
     });
+
+    refresh();
   };
 
   const handleOnRemove = (data) => {
     update("cart", (res) => {
       return res.filter((item) => item.id !== data.id);
     });
+
+    refresh();
   };
 
   return (

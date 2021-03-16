@@ -1,46 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useQuery } from "@apollo/client";
-import { get } from "idb-keyval";
 import { FETCH_CURRENCY, FETCH_PRODUCTS } from "../../graphQL/queries";
 import "./ModalStyles.scss";
 import CustomSelect from "../Select";
 import CartCard from "../CartCard";
+import { CartsContext } from "../../contexts/CartsContext";
 
 function Modal({ handleShowModal }) {
-  const currencies = useQuery(FETCH_CURRENCY);
+  const { carts, refresh } = useContext(CartsContext);
+  const currencyQuery = useQuery(FETCH_CURRENCY);
   const products = useQuery(FETCH_PRODUCTS, {
     variables: {
       currency: "USD",
     },
   });
-  const [cart, setCart] = useState([]);
-  const [currency, setCurrency] = useState([]);
-
-  const getCart = get("cart");
+  const [selectCurrency, setSelectCurrency] = useState("usd");
+  const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
-    getCart.then((val) => {
-      setCart(val);
-    });
-  }, [getCart]);
-
-  useEffect(() => {
-    if (currencies.data) {
-      setCurrency(currencies.data.currency);
+    if (currencyQuery.data) {
+      setCurrencies(currencyQuery.data.currency);
     }
-  }, [currencies.data]);
-
-  useEffect(() => {
     return () => {
-      setCurrency([]);
-      setCart([]);
+      setCurrencies([]);
     };
-  }, []);
+  }, [currencyQuery.data]);
 
-  const options = currency.map((item) => ({ value: item, label: item }));
+  const options = currencies.map((item) => ({ value: item, label: item }));
 
-  const totalPrice = cart.reduce((acc, cur) => acc + cur.price * cur.count, 0);
+  const totalPrice = carts.reduce((acc, cur) => acc + cur.price * cur.count, 0);
 
   const closeModal = () => {
     handleShowModal(false);
@@ -57,35 +46,38 @@ function Modal({ handleShowModal }) {
         </div>
 
         <div className="dialog__body">
-          {currencies.loading && (
+          {currencyQuery.loading && (
             <div className="loading-state">
               <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
               <span className="sr-only">Loading...</span>
             </div>
           )}
-          {!currencies.loading && cart.length > 0 && (
+          {!currencyQuery.loading && carts.length > 0 && (
             <div className="select">
               <CustomSelect
                 placeholder="Currency"
                 classNamePrefix="modal-select"
                 options={options}
+                onChange={(select) => setSelectCurrency(select.value)}
               />
             </div>
           )}
-          {!currencies.loading && (
+          {!currencyQuery.loading && (
             <div className="cart-list">
-              {cart.length === 0 && (
+              {carts.length === 0 && (
                 <div className="empty-state">No item in cart!!!</div>
               )}
-              {cart.length > 0 &&
-                cart.map((item) => <CartCard key={item.id} data={item} />)}
+              {carts.length > 0 &&
+                carts.map((item) => (
+                  <CartCard key={item.id} data={item} refresh={refresh} />
+                ))}
             </div>
           )}
-          {!currencies.loading && cart.length > 0 && (
+          {!currencyQuery.loading && carts.length > 0 && (
             <div className="total">
               <div className="label">Subtotal</div>
               <div className="value">
-                {getSymbolFromCurrency("usd")}
+                {getSymbolFromCurrency(selectCurrency)}
                 {totalPrice}
               </div>
             </div>
