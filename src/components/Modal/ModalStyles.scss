@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(#000000, 0.8);
-  //   display: none;
+  z-index: 1000;
 
   .dialog {
     width: 50vw;
