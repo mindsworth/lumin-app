@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import getSymbolFromCurrency from "currency-symbol-map";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { FETCH_CURRENCY, FETCH_PRODUCTS } from "../../graphQL/queries";
 import "./ModalStyles.scss";
 import CustomSelect from "../Select";
@@ -10,12 +10,14 @@ import { CartsContext } from "../../contexts/CartsContext";
 function Modal({ handleShowModal }) {
   const { carts, refresh } = useContext(CartsContext);
   const currencyQuery = useQuery(FETCH_CURRENCY);
-  const products = useQuery(FETCH_PRODUCTS, {
+  const [selectCurrency, setSelectCurrency] = useState("USD");
+  const [fetchProducts, products] = useLazyQuery(FETCH_PRODUCTS, {
     variables: {
-      currency: "USD",
+      currency: selectCurrency,
     },
   });
-  const [selectCurrency, setSelectCurrency] = useState("usd");
+
+  console.log("products :", products.data, carts);
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
@@ -26,6 +28,23 @@ function Modal({ handleShowModal }) {
       setCurrencies([]);
     };
   }, [currencyQuery.data]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [selectCurrency]);
+
+  useEffect(() => {
+    if (products.data) {
+      updateCart();
+    }
+  }, [products.data]);
+
+  const updateCart = () => {
+    const newCarts = products.data.products.filter((product) =>
+      carts.includes(product)
+    );
+    console.log("newCarts :", newCarts);
+  };
 
   const options = currencies.map((item) => ({ value: item, label: item }));
 
