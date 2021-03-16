@@ -35,13 +35,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <CartsContextProvider>
-        <div className="App">
-          <ModalContextProvider>
+        <ModalContextProvider>
+          <div className="App">
             <Header />
-          </ModalContextProvider>
-          <HeroFilter />
-          <ProductListing />
-        </div>
+            <HeroFilter />
+            <ProductListing />
+          </div>
+        </ModalContextProvider>
       </CartsContextProvider>
     </ApolloProvider>
   );

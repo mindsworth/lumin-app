@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useQuery } from "@apollo/client";
 import Card from "../Card";
 import Modal from "../Modal";
 import "./ProductListingStyles.scss";
 import { FETCH_PRODUCTS } from "../../graphQL/queries";
+import { ModalContext } from "../../contexts/ModalContext";
 
 function ProductListing() {
+  const { visible, setVisibility } = useContext(ModalContext);
   const { loading, data } = useQuery(FETCH_PRODUCTS, {
     variables: {
       currency: "USD",
     },
   });
   const [products, setProducts] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -32,11 +33,11 @@ function ProductListing() {
         <div className="container products__listing">
           {!loading &&
             products.map((item) => (
-              <Card key={item.id} data={item} handleShowModal={setShowModal} />
+              <Card key={item.id} data={item} handleShowModal={setVisibility} />
             ))}
         </div>
       </div>
-      {showModal && <Modal handleShowModal={setShowModal} />}
+      {visible && <Modal handleShowModal={setVisibility} />}
     </>
   );
 }

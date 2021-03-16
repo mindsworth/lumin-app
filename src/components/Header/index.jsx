@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { get } from "idb-keyval";
 import "./HeaderStyles.scss";
 import { CartsContext } from "../../contexts/CartsContext";
 import { ModalContext } from "../../contexts/ModalContext";
 
 function Header() {
   const { carts } = useContext(CartsContext);
-  // const { visible, setVisibility } = useContext(ModalContext);
+  const { setVisibility } = useContext(ModalContext);
 
   return (
     <header className="header">
@@ -19,7 +18,7 @@ function Header() {
         <ul className="main-nav__right">
           <li>Account</li>
           <li>
-            <div className="cart-icon">
+            <div className="cart-icon" onClick={setVisibility}>
               <i className="fa fa-shopping-cart" aria-hidden="true" />
               <span className="count">{carts.length}</span>
             </div>
